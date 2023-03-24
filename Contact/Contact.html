@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="About.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+
+</head>
+
+<body>
+
+    <div id="overlay">
+
+    </div>
+    <div class="container">
+
+        <header>
+            <nav>
+                <div class="logo">
+                    <img src="../Images/logo.png" alt="">
+                </div>
+                <ul class="menu">
+                    <li>
+                        <a href="../index.html">HOME</a>
+                    </li>
+                    <li>
+                        <a href="About/about.html">ABOUT</a>
+                    </li>
+                    <li>
+                        <a href="">CONTACT</a>
+                    </li>
+                    <li>
+                        <a href="">FEEDBACK</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="information">
+                <div class="list">
+                    <ul>
+                        <li><a href="">New</a></li>
+                        <li><a href="">Coming Soon</a></li>
+                        <li><a href="">Books</a></li>
+                        <li><a href="">Education</a></li>
+                        <li><a href="">Highlights</a></li>
+                        <li><a href="">Gift Carts</a></li>
+                    </ul>
+                </div>
+                <form action="">
+                    <input id="values-search" class="search-box" type="text" placeholder=" Search Your Book" required>
+                    <input class="button-search" type="submit" value="Search">
+                </form>
+                <div id="values-item">
+                    <table>
+                        <label>
+                            <i id="close" class='bx bx-x'></i>
+                            <input class="no" type="radio" id="check">
+                        </label>
+                        <thead>
+                            <tr>
+                                <th colspan="4" width="100%">Product</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">
+                            <tr>
+                                <td>
+                                    <div class="poster">
+                                        <img src="../Images/book1.jpg" alt="">
+                                    </div>
+                                    <p>Đắc nhân tâm</p>
+                                    <span>165.000đ</span>
+                                </td>
+                                <td>
+                                    <div class="poster">
+                                        <img src="../Images/book2.jpg" alt="">
+                                    </div>
+                                    <p>Bố giàgià</p>
+                                    <span>165.000đ</span>
+                                </td>
+                                <td>
+                                    <div class="poster">
+                                        <img src="../Images/book3.jpg" alt="">
+                                    </div>
+                                    <p>Dạy con làmg giàu</p>
+                                    <span>165.000đ</span>
+                                </td>
+                                <td>
+                                    <div class="poster">
+                                        <img src="../Images/book4.jpg" alt="">
+                                    </div>
+                                    <p>Cuốn theo chiều gió</p>
+                                    <span>165.000đ</span>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="cart">
+                    <div class="icon" id="flip">
+                        <label>
+                            <input type="checkbox" name="avn">
+                            <i id="cart" class='bx bx-cart-alt'></i>
+                        </label>
+                    </div>
+                    <div id="panel">Hello world!</div>
+                </div>
+                <div class="contact">
+                    
+                </div>
+        </header>
+        <script>
+            // JQUERY
+            // back to top page
+            $(document).ready(function () {
+                $(window).scroll(function () {
+                    if ($(this).scrollTop()) {
+                        $("#backtop").fadeIn();
+                    } else {
+                        $("#backtop").fadeOut();
+                    }
+                });
+                $("#backtop").click(function () {
+                    $("html,body").animate(
+                        {
+                            scrollTop: 0,
+                        },
+                        1000
+                    );
+                });
+            });
+
+            //cart
+
+            $(document).ready(function () {
+                $("#cart").click(function () {
+                    $("#panel").slideToggle("slow");
+                });
+            });
+
+            // search
+
+            $(document).ready(function () {
+                $("#values-search").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable td").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+
+            let ok = document.querySelector('.no');
+            function hide() {
+                var checkBox = document.getElementById("check");
+                var table = document.getElementById("values-item");
+                if (checkBox.checked == true) {
+                    table.style.display = "none";
+                }
+            }
+            ok.addEventListener("click", hide);
+            $(document).ready(function () {
+                $("#values-search").focus(function () {
+                    $("#values-item").css("display", "block");
+                });
+            });
+
+        </script>
+</body>
